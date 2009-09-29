@@ -1,0 +1,14 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  i18n_domain="pleiades.sitemap">
+
+  <browser:page
+    for="Products.PleiadesEntity.content.interfaces.IPlaceContainer"
+    name="dump-sitemap"
+    class=".browser.PlacesSitemapDumper"
+    permission="cmf.ModifyPortalContent"
+    />
+
+</configure>
