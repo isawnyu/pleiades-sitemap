@@ -4,11 +4,4 @@
   xmlns:five="http://namespaces.zope.org/five"
   i18n_domain="pleiades.sitemap">
 
-  <browser:page
-    for="Products.PleiadesEntity.content.interfaces.IPlaceContainer"
-    name="dump-sitemap"
-    class=".browser.PlacesSitemapDumper"
-    permission="cmf.ModifyPortalContent"
-    />
-
 </configure>
