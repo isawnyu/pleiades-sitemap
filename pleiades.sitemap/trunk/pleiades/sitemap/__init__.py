@@ -69,7 +69,7 @@ class Sitemap(object):
 
 
 class ISitemapItem(Interface):
-    loc = Attribute("""URL of sitemapped resource""")
+    path = Attribute("""Relative URL of sitemapped resource""")
     lastmod = Attribute("""Last modifed timestamp""")
 
 
@@ -78,7 +78,7 @@ class SitemapItem(object):
     implements(ISitemap)
     
     def __init__(self, brain):
-        self.loc = brain.getURL()
+        self.path = "/" + brain.getPath().split('/', 2)[2]
         self._modtime = zope.datetime.time(brain.ModificationDate)
         self.lastmod = zope.datetime.iso8601_date(self._modtime)
 
@@ -88,7 +88,7 @@ SITEMAP_HEAD = """<?xml version="1.0" encoding="UTF-8"?>
 """
 SITEMAP_ITEM = """
    <url>
-      <loc>%s</loc>
+      <loc>http://pleiades.stoa.org%s</loc>
       <lastmod>%s</lastmod>
    </url>
 """
@@ -117,7 +117,7 @@ class SitemapWriter(object):
             f = open(filename, 'w')
             f.write(SITEMAP_HEAD)
             for item in sitemap:
-                f.write(SITEMAP_ITEM % (item.loc, item.lastmod))
+                f.write(SITEMAP_ITEM % (item.path, item.lastmod))
             f.write(SITEMAP_FOOT)
             f.close()
             loc = "%s/%s.xml" % (index.urlbase, sitemap.name)
