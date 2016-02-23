@@ -13,6 +13,8 @@ To test the class that does the batching, we'll use a list of brain-like objects
   ...             setattr(self, key, value)
   ...     def getURL(self):
   ...         return self.url
+  ...     def getPath(self):
+  ...         return '/plone' + self.url.replace('http://example.com', '')
   
   >>> from datetime import datetime
   >>> source = [MockBrain(Title='%d'%i, url='http://example.com/%d'%i, ModificationDate=datetime.fromtimestamp(1254215834 + 100000*i).isoformat()) for i in range(3)]
@@ -27,12 +29,12 @@ To test the class that does the batching, we'll use a list of brain-like objects
   >>> sitemap0.name
   'sitemap-1'
   >>> sitemap0.lastmod
-  '2009-09-29T11:17:14Z'
+  '2009-09-29T02:17:14Z'
   >>> url00 = sitemap0[0]
-  >>> url00.loc
-  'http://example.com/0'
+  >>> url00.path
+  '/0'
   >>> url00.lastmod
-  '2009-09-29T11:17:14Z'
+  '2009-09-29T02:17:14Z'
   >>> index[1].lastmod == index[1][0].lastmod
   True
   >>> index[2].lastmod == index[2][0].lastmod
