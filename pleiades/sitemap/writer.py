@@ -1,3 +1,4 @@
+import sys
 from optparse import OptionParser
 
 from Products.Five.browser import BrowserView
@@ -38,9 +39,9 @@ if __name__ == '__main__':
         "-z", "--zip", dest="gzip", action="store_true", default=False,
         help="GZIP output")
     
-    opts, args = parser.parse_args(sys.argv[1:])
+    arg_start = [i for (i, v) in enumerate(sys.argv) if '.py' in v][0]
+    opts, args = parser.parse_args(sys.argv[arg_start:])
 
     site = app['plone']
     secure(site, 'admin')
     PlacesWriter()(site, opts.destination, opts.gzip)
-
