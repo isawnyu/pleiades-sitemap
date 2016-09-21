@@ -88,7 +88,7 @@ SITEMAP_HEAD = """<?xml version="1.0" encoding="UTF-8"?>
 """
 SITEMAP_ITEM = """
    <url>
-      <loc>http://pleiades.stoa.org%s</loc>
+      <loc>https://pleiades.stoa.org%s</loc>
       <lastmod>%s</lastmod>
    </url>
 """

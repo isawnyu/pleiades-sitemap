@@ -12,7 +12,7 @@ class PlacesWriter(object):
     
     def __call__(self, context, destination, gzip=False):
         index = SitemapIndex(
-                    'http://pleiades.stoa.org', 
+                    'https://pleiades.stoa.org',
                     batchsize=10000, 
                     gzip=gzip
                     )
